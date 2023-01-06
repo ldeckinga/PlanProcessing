@@ -56,7 +56,7 @@ for filepath in files:
                 curveText = curveText[0:-1]
                 curveText += textFooter
 # Write Json and Room Number to output text file
-                with open(outputFolder + '\output2.txt', 'a') as f:
+                with open(outputFolder + '\output.txt', 'a') as f:
                     f.write(curveText)
                     f.write('\t')
                     f.write(thisNumber)
