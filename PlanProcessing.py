@@ -1,4 +1,4 @@
-﻿import rhinoscriptsyntax as rs
+import rhinoscriptsyntax as rs
 import scriptcontext as sc
 import os
 import Rhino
@@ -19,6 +19,8 @@ outputFolder = rs.BrowseForFolder(message="Select folder for output.txt file")
 for filepath in files:
 # Import the dwg file
     rs.Command("!_-Import \"" + filepath + "\" -Enter -Enter")
+#    docPoint = sc.doc.EarthAnchorPoint
+#    xform = docPoint.GetModelToEarthTransform(Rhino.UnitSystem(9)) # Unit System 9 for feet
 #    rs.UnselectAllObjects()
 
 # Process Room Outline Layers
@@ -46,6 +48,7 @@ for filepath in files:
                 curveText = textHeader
                 textFooter = ']]}'
                 for thisPoint in pointList:
+#                    newPoint = rs.PointTransform(thisPoint, xform)
                     thisX = str(thisPoint.X)
                     thisY = str(thisPoint.Y)
                     thisText = '[' + thisX + ',' + thisY + ']' + ','
@@ -53,7 +56,7 @@ for filepath in files:
                 curveText = curveText[0:-1]
                 curveText += textFooter
 # Write Json and Room Number to output text file
-                with open(outputFolder + '\output.txt', 'a') as f:
+                with open(outputFolder + '\output2.txt', 'a') as f:
                     f.write(curveText)
                     f.write('\t')
                     f.write(thisNumber)
